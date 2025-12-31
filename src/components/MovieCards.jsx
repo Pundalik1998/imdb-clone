@@ -1,12 +1,38 @@
-import React from 'react'
+export const MovieCards = ({
+  poster_path,
+  name,
+  handleAddtoWatchlist,
+  movieObj,
+  handleRemoveFromWatchlist,
+  watchlist,
+}) => {
+  const isInWatchlist = watchlist.some(
+    (movie) => movie.id === movieObj.id
+  );
 
-export const MovieCards = () => {
   return (
-    <div className="h-[40vh] w-[180px] bg-center bg-cover rounded-xl hover:scale-110 duration-300 hover:cursor-pointer flex flex-col justify-between items-end"
+    <div
+      className="relative aspect-[2/3] w-full rounded-2xl bg-cover bg-center shadow-lg hover:scale-105 transition-transform duration-300"
       style={{
-        backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsgFsXEZdveVH4wCX_h7zpd8nOzEWFznAJdA&s)`,
-      }}>
+        backgroundImage: `url(https://image.tmdb.org/t/p/w500/${poster_path})`,
+      }}
+    >
+      {/* Action */}
+      <div
+        onClick={() =>
+          isInWatchlist
+            ? handleRemoveFromWatchlist(movieObj)
+            : handleAddtoWatchlist(movieObj)
+        }
+        className="absolute top-2 right-2 h-9 w-9 flex items-center justify-center rounded-full bg-black/70 text-lg cursor-pointer"
+      >
+        {isInWatchlist ? "❌" : "❤️"}
+      </div>
 
+      {/* Title */}
+      <div className="absolute bottom-0 w-full text-center text-white text-sm font-semibold bg-gradient-to-t from-black via-black/70 to-transparent p-3 rounded-b-2xl">
+        {name}
+      </div>
     </div>
-  )
-}
+  );
+};

@@ -1,16 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/images/IMDB-logo.png";
 import { Link } from "react-router-dom";
+
 export const Navbar = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="flex border space-x-8 items-center pl-3 py-4">
-      <img className="w-[50px]" src={logo} alt="" />
-      <Link to="./" className="text-yellow-500 text-2xl font-bold">
-        Home
-      </Link>
-      <Link to="./watchlist" className="text-yellow-500 text-2xl font-bold">
-        Watchlist
-      </Link>
-    </div>
+    <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-md shadow-lg">
+      <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
+        
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <img className="w-12" src={logo} alt="IMDB Logo" />
+          <span className="text-yellow-400 text-2xl font-extrabold tracking-wide">
+            IMDB
+          </span>
+        </div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-10">
+          <Link
+            to="/"
+            className="text-white text-lg font-medium hover:text-yellow-400 transition"
+          >
+            Home
+          </Link>
+          <Link
+            to="/watchlist"
+            className="text-white text-lg font-medium hover:text-yellow-400 transition"
+          >
+            Watchlist
+          </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-white text-3xl"
+          onClick={() => setOpen(!open)}
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* Mobile Dropdown */}
+      {open && (
+        <div className="md:hidden bg-black/95 px-6 pb-4 space-y-4">
+          <Link
+            to="/"
+            onClick={() => setOpen(false)}
+            className="block text-white text-lg hover:text-yellow-400"
+          >
+            Home
+          </Link>
+          <Link
+            to="/watchlist"
+            onClick={() => setOpen(false)}
+            className="block text-white text-lg hover:text-yellow-400"
+          >
+            Watchlist
+          </Link>
+        </div>
+      )}
+    </nav>
   );
 };
