@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/images/IMDB-logo.png";
+import logo from "../assets/images/MovieBasket_logo.png";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
@@ -9,15 +9,13 @@ export const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-md shadow-lg">
       <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
         
-        {/* Logo */}
+        
         <div className="flex items-center gap-3">
-          <img className="w-12" src={logo} alt="IMDB Logo" />
-          <span className="text-yellow-400 text-2xl font-extrabold tracking-wide">
-            IMDB
-          </span>
+          <img className="w-24" src={logo} alt="IMDB Logo" />
+         
         </div>
 
-        {/* Desktop Menu */}
+        
         <div className="hidden md:flex items-center gap-10">
           <Link
             to="/"
@@ -33,7 +31,7 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
+        
         <button
           className="md:hidden text-white text-3xl"
           onClick={() => setOpen(!open)}
@@ -42,7 +40,7 @@ export const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
+      
       {open && (
         <div className="md:hidden bg-black/95 px-6 pb-4 space-y-4">
           <Link

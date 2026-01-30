@@ -5,7 +5,7 @@ import { Movies } from "./components/Movies.jsx";
 import { WatchList } from "./components/WatchList.jsx";
 import { Banner } from "./components/Banner.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {Footer} from "./components/Footer.jsx";
+import { Footer } from "./components/Footer.jsx";
 
 function App() {
   let [watchlist, setWatchList] = useState([]);
@@ -46,7 +46,9 @@ function App() {
             element={
               <>
                 <Banner movie={movies[0]} />
-                <Movies setMovies={setMovies} movies={movies}
+                <Movies
+                  setMovies={setMovies}
+                  movies={movies}
                   watchlist={watchlist}
                   handleAddtoWatchlist={handleAddtoWatchlist}
                   handleRemoveFromWatchlist={handleRemoveFromWatchlist}
@@ -57,11 +59,15 @@ function App() {
           <Route
             path="/watchlist"
             element={
-              <WatchList watchlist={watchlist} setWatchList={setWatchList} handleRemoveFromWatchlist= {handleRemoveFromWatchlist} />
+              <WatchList
+                watchlist={watchlist}
+                setWatchList={setWatchList}
+                handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+              />
             }
           ></Route>
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </>
   );
